@@ -18,5 +18,5 @@ docker compose up
 
 # Login Credentials
 For Grafana and InfluxDB 2.0,
-<b>Username:</b> admin
-<b>Password:</b> `DOCKER_INFLUXDB_INIT_PASSWORD`
+<br><b>Username:</b> admin
+<br><b>Password:</b> `DOCKER_INFLUXDB_INIT_PASSWORD`
