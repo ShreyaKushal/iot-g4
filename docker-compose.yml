@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  influxdb:
+    image: influxdb:2.0
+    container_name: influxdb
+    ports:
+      - '8086:8086'
+    volumes:
+      - influxdb-data:/var/lib/influxdb2
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: 'setup'
+      DOCKER_INFLUXDB_INIT_USERNAME: 'admin'
+      DOCKER_INFLUXDB_INIT_PASSWORD: ${DOCKER_INFLUXDB_INIT_PASSWORD}
+      DOCKER_INFLUXDB_INIT_ORG: 'iot-g3'
+      DOCKER_INFLUXDB_INIT_BUCKET: 'iaq-data'
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: '${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}'
+
+  nodered:
+    image: nodered-image
+    container_name: nodered
+    ports:
+      - '1880:1880'
+    volumes:
+      - node-red-data:/data
+    depends_on:
+      - influxdb
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - influxdb
+
+  mosquitto:
+    image: eclipse-mosquitto
+    container_name: mosquitto
+    ports:
+      - '1883:1883'
+      - '9001:9001'
+    volumes:
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
+    restart: unless-stopped
+
+volumes:
+  influxdb-data:
+  node-red-data:
+  grafana-data:
+  mosquitto-data:
+  mosquitto-log:

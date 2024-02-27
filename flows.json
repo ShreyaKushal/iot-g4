@@ -1,0 +1,138 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "cb7253d1fc873ebb",
+        "type": "mqtt in",
+        "z": "f6f2187d.f17ca8",
+        "name": "/milesight/uplink",
+        "topic": "/milesight/uplink",
+        "qos": "2",
+        "datatype": "json",
+        "broker": "a07a7017b4ee5f09",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 240,
+        "wires": [
+            [
+                "506f6d237e42b1eb"
+            ]
+        ]
+    },
+    {
+        "id": "89207cc89f2ce048",
+        "type": "influxdb out",
+        "z": "f6f2187d.f17ca8",
+        "influxdb": "485c0440fca82a70",
+        "name": "",
+        "measurement": "iaq-data",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "iot-g3",
+        "bucket": "iaq-data",
+        "x": 720,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "57798a8d2c62e374",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 640,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "506f6d237e42b1eb",
+        "type": "change",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\t    \"carbon dioxide\": msg.payload.co2,\t    \"humidity\": msg.payload.humidity,\t    \"temperature\": msg.payload.temperature,\t    \"stime\": msg.payload.time\t}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 240,
+        "wires": [
+            [
+                "89207cc89f2ce048"
+            ]
+        ]
+    },
+    {
+        "id": "a07a7017b4ee5f09",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "wso.vidalsolution.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "485c0440fca82a70",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    }
+]
