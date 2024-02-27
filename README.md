@@ -31,7 +31,6 @@ docker compose up
     </li>
 </ul>
 
-5. 
 # Login Credentials
 For Grafana and InfluxDB 2.0,
 <br><b>Username:</b> admin
