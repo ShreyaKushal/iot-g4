@@ -16,6 +16,22 @@ docker compose up
     <li>Copy the `DOCKER_INFLUXDB_INIT_ADMIN_TOKEN` value from <i>.env</i> file and paste under Token</li>
 </ul>
 
+4. Configure Grafana
+</t><ul>
+    <li>
+        Log in with a temporary credential:
+        <br><b>Username:</b> admin
+        <br><b>Password:</b> admin 
+    </li>
+    <li>
+        When prompted to change the password, change to `DOCKER_INFLUXDB_INIT_PASSWORD`
+    </li>
+    <li>
+        Add influxdb as data source using Flux
+    </li>
+</ul>
+
+5. 
 # Login Credentials
 For Grafana and InfluxDB 2.0,
 <br><b>Username:</b> admin

@@ -72,7 +72,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "{\t    \"carbon dioxide\": msg.payload.co2,\t    \"humidity\": msg.payload.humidity,\t    \"temperature\": msg.payload.temperature,\t    \"stime\": msg.payload.time\t}",
+                "to": "{\t    \"carbon dioxide\": msg.payload.co2,\t    \"humidity\": msg.payload.humidity,\t    \"temperature\": msg.payload.temperature\t}",
                 "tot": "jsonata"
             }
         ],
