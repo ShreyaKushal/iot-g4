@@ -17,7 +17,8 @@ docker compose up
 </ul>
 
 4. Configure Grafana
-</t><ul>
+</t>
+<ul>
     <li>
         Log in with a temporary credential:
         <br><b>Username:</b> admin
@@ -28,6 +29,23 @@ docker compose up
     </li>
     <li>
         Add influxdb as data source using Flux
+    </li>
+    <li>
+        Basic Auth Details: refer to Login Credentials below
+    </li>
+    <li>
+        InfluxDB Details:
+        <ul>
+            <li>
+                Organisation: iot-g3
+            </li>
+            <li>
+                Token: `DOCKER_INFLUXDB_INIT_ADMIN_TOKEN`
+            </li>
+            <li>
+                Default Bucket: iaq-data
+            </li>
+        </ul>
     </li>
 </ul>
 
