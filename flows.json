@@ -134,5 +134,112 @@
         "url": "http://influxdb:8086",
         "timeout": "10",
         "rejectUnauthorized": true
+    },
+    {
+        "id": "883a8e531bd48e58",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 670,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "52bf0dace8760282",
+        "type": "function",
+        "z": "f6f2187d.f17ca8",
+        "name": "Send Alerts",
+        "func": "// Define your thresholds\nconst TEMPERATURE_THRESHOLD = 27; // degrees Celsius\nconst CO2_THRESHOLD = 800; // ppm\nconst HUMIDITY_THRESHOLD = 65; // percentage\n\n// Extract the values from the modified message payload\nconst temperature = msg.payload[\"temperature\"];\nconst co2 = msg.payload[\"carbon dioxide\"];\nconst humidity = msg.payload[\"humidity\"];\nconst deviceName = msg.payload[\"deviceName\"] || 'the device'; // Default to 'the device' if deviceName is not set\n\n// Initialize an array to hold alert messages\nlet alerts = [];\n\n// Check if the sensor values exceed the threshold and add an alert message if they do\nif (temperature > TEMPERATURE_THRESHOLD) {\n    alerts.push(`Temperature is above threshold at ${temperature}°C.`);\n}\n\nif (co2 > CO2_THRESHOLD) {\n    alerts.push(`CO2 level is above threshold at ${co2} ppm.`);\n}\n\nif (humidity > HUMIDITY_THRESHOLD) {\n    alerts.push(`Humidity is above threshold at ${humidity}%.`);\n}\n\n// If there are any alerts, set the payload to the alerts array and return the message\nif (alerts.length > 0) {\n    // Include the device name in the message if available\n    let alertMessage = `Alert for ${deviceName}:\\n` + alerts.join(\"\\n\");\n    msg.payload = {\n        chatId: \"974749967\",\n        type: \"message\",\n        content: alertMessage\n    };\n    return [msg, null]; // Return the message object for the next node to process\n}\n\n// If there are no alerts, stop the flow by returning null\nreturn [null, msg]; // Return null to stop processing the flow\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 210,
+        "y": 520,
+        "wires": [
+            [
+                "cac7cae9f500a424"
+            ]
+        ]
+    },
+    {
+        "id": "cac7cae9f500a424",
+        "type": "telegram sender",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "bot": "983c9287ea6666f4",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 400,
+        "y": 520,
+        "wires": [
+            [
+                "883a8e531bd48e58"
+            ]
+        ]
+    },
+    {
+        "id": "b588c3942102f954",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sensor/iaq",
+        "payload": "{\"temperature\":28,\"carbon dioxide\":900,\"humidity\":70,\"deviceName\":\"Sensor1\"}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 640,
+        "wires": [
+            [
+                "52bf0dace8760282"
+            ]
+        ]
+    },
+    {
+        "id": "983c9287ea6666f4",
+        "type": "telegram bot",
+        "botname": "test1",
+        "usernames": "",
+        "chatids": "974749967",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
     }
 ]
