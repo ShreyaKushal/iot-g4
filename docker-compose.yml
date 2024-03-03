@@ -16,10 +16,13 @@ services:
       DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: '${DOCKER_INFLUXDB_INIT_ADMIN_TOKEN}'
 
   nodered:
+    build: .
     image: nodered-image
     container_name: nodered
     ports:
       - '1880:1880'
+    environment:
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
     volumes:
       - node-red-data:/data
     depends_on:

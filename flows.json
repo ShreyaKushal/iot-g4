@@ -220,7 +220,7 @@
     {
         "id": "983c9287ea6666f4",
         "type": "telegram bot",
-        "botname": "test1",
+        "botname": "sendAlertsNotification",
         "usernames": "",
         "chatids": "974749967",
         "baseapiurl": "",
