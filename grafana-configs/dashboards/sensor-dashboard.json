@@ -169,9 +169,7 @@
         "justifyMode": "auto",
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -365,9 +363,7 @@
         "justifyMode": "auto",
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -561,9 +557,7 @@
         "justifyMode": "auto",
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -576,7 +570,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "a498641e-4eb1-4cc9-921f-7e7b285fa8b2"
+            "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
           },
           "hide": false,
           "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\" or r[\"deviceName\"] == \"AM103L-Sensor_5\" or r[\"deviceName\"] == \"AM307-Sensor_2\" or r[\"deviceName\"] == \"AM319-Sensor_1\" or r[\"deviceName\"] == \"AM319-Sensor_3\" or r[\"deviceName\"] == \"AM319-Sensor_7\")\r\n\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\" or r[\"_field\"] == \"carbon dioxide\" or r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
@@ -748,9 +742,7 @@
         "justifyMode": "auto",
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -763,7 +755,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "a498641e-4eb1-4cc9-921f-7e7b285fa8b2"
+            "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
           },
           "hide": false,
           "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\" or r[\"deviceName\"] == \"AM103L-Sensor_5\" or r[\"deviceName\"] == \"AM307-Sensor_2\" or r[\"deviceName\"] == \"AM319-Sensor_1\" or r[\"deviceName\"] == \"AM319-Sensor_3\" or r[\"deviceName\"] == \"AM319-Sensor_7\")\r\n\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\" or r[\"_field\"] == \"carbon dioxide\" or r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
@@ -935,9 +927,7 @@
         "justifyMode": "auto",
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -950,7 +940,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "a498641e-4eb1-4cc9-921f-7e7b285fa8b2"
+            "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
           },
           "hide": false,
           "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\" or r[\"deviceName\"] == \"AM103L-Sensor_5\" or r[\"deviceName\"] == \"AM307-Sensor_2\" or r[\"deviceName\"] == \"AM319-Sensor_1\" or r[\"deviceName\"] == \"AM319-Sensor_3\" or r[\"deviceName\"] == \"AM319-Sensor_7\")\r\n\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\" or r[\"_field\"] == \"carbon dioxide\" or r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
@@ -976,10 +966,7 @@
       "type": "stat"
     },
     {
-      "datasource": {
-        "type": "influxdb",
-        "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -1122,9 +1109,7 @@
         "justifyMode": "auto",
         "orientation": "vertical",
         "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
+          "calcs": ["lastNotNull"],
           "fields": "",
           "values": false
         },
@@ -1185,7 +1170,7 @@
   "timepicker": {},
   "timezone": "",
   "title": "Sensor Dashboard",
-  "uid": "a36dee3d-6d9d-4e47-8761-22e2521cc837",
-  "version": 20,
+  "uid": "cafc7a8b-b06d-41c6-ab51-ac926c4c9e08",
+  "version": 22,
   "weekStart": ""
 }
