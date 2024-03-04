@@ -74,10 +74,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -110,8 +106,9 @@
             "type": "influxdb",
             "uid": "c9333630-0414-4529-94f9-dd42f9275885"
           },
-          "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: -6h)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"carbon dioxide\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> holtWinters( n: 10, interval: 10m,withFit:true)",
-          "refId": "A"
+          "hide": false,
+          "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: -6h)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"carbon dioxide\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> holtWinters( n: 10, interval: 10m,withFit:true)\r\n  ",
+          "refId": "Holt Winters"
         },
         {
           "datasource": {
@@ -123,24 +120,25 @@
           "refId": "B"
         }
       ],
-      "title": "Sensor 4 CO2 Holt WInters Smoothing",
+      "title": "Sensor 4 CO2 Holt Winters Smoothing",
+      "transformations": [],
       "type": "timeseries"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 39,
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "now-6h",
-    "to": "now"
+    "from": "2024-03-03T20:54:21.246Z",
+    "to": "2024-03-04T20:54:21.246Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "test Holt Winters smoothing",
   "uid": "d737d2bf-9422-4a9d-8c6a-cfec5294ba37",
-  "version": 5,
+  "version": 7,
   "weekStart": ""
 }
