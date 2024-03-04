@@ -25,7 +25,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "c9333630-0414-4529-94f9-dd42f9275885"
+        "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
       },
       "fieldConfig": {
         "defaults": {
@@ -104,7 +104,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c9333630-0414-4529-94f9-dd42f9275885"
+            "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
           },
           "hide": false,
           "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: -6h)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"carbon dioxide\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> holtWinters( n: 10, interval: 10m,withFit:true)\r\n  ",
@@ -113,7 +113,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "c9333630-0414-4529-94f9-dd42f9275885"
+            "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
           },
           "hide": false,
           "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"carbon dioxide\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
