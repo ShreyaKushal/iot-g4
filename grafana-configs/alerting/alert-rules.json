@@ -1,0 +1,1436 @@
+{
+  "apiVersion": 1,
+  "groups": [
+    {
+      "orgId": 1,
+      "name": "Temperature",
+      "folder": "Temperature",
+      "interval": "5m",
+      "rules": [
+        {
+          "uid": "e7ea7449-1730-49ce-af89-e0b1f0d8c278",
+          "title": "Sensor 3 - Temperature",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_3\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"temperature\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [27], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 2,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "2"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "e067362f-2e8f-4726-812f-7532139d097f",
+          "title": "Sensor 1 - Temperature",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 21600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_1\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"temperature\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 21600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 21600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [27], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 2,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "2"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "e060070f-bf89-45c2-99a9-06590829c99e",
+          "title": "Sensor 2 - Temperature",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM307-Sensor_2\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"temperature\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [27], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 1,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "1"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "e96693f4-efef-4560-b76b-787278abc44d",
+          "title": "Sensor 4 - Temperature",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM103-Sensor_4\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"temperature\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [27], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 2,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "2"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "f990d6e2-c64b-4564-a52d-3302a0f1bd44",
+          "title": "Sensor 5 - Temperature",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM103L-Sensor_5\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"temperature\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [27], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 2,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "2"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "f6e76a43-7e97-4441-a0a5-bff29a69d0f0",
+          "title": "Sensor 7 - Temperature",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_7\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"temperature\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [27], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 2,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "2"
+          },
+          "labels": {},
+          "isPaused": false
+        }
+      ]
+    },
+    {
+      "orgId": 1,
+      "name": "Carbon Dioxide",
+      "folder": "Carbon Dioxide",
+      "interval": "5m",
+      "rules": [
+        {
+          "uid": "f17ab1ea-b93e-4f20-add8-5603187f9a2a",
+          "title": "Sensor 1 - CO2",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_1\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"carbon dioxide\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [800], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 7,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "7"
+          },
+          "labels": {},
+          "isPaused": false
+        },
+        {
+          "uid": "c41c9969-3e9e-4bb9-b44f-fdd830c0452d",
+          "title": "Sensor 2 - CO2",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM307-Sensor_2\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"carbon dioxide\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [800], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 7,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "7"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "a6881d62-5477-4824-92c9-28910f32e1ce",
+          "title": "Sensor 3 - CO2",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_3\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"carbon dioxide\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [800], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 7,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "7"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "e9217226-a794-4a85-9981-65e9010a2428",
+          "title": "Sensor 4 - CO2",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM103-Sensor_4\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"carbon dioxide\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [800], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 7,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "7"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "e9753ac3-c0fb-44d2-b893-689c4667abae",
+          "title": "Sensor 5 - CO2",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM103L-Sensor_5\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"carbon dioxide\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [800], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 7,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "7"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "e58ea4c0-78bd-47e9-9890-036589d2cec4",
+          "title": "Sensor 7 - CO2",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_7\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"carbon dioxide\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [800], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 7,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "7"
+          },
+          "isPaused": false
+        }
+      ]
+    },
+    {
+      "orgId": 1,
+      "name": "Humidity",
+      "folder": "Humidity",
+      "interval": "5m",
+      "rules": [
+        {
+          "uid": "db276d7c-13bf-46a4-a8e6-9330f6354b47",
+          "title": "Sensor 1 - Humidity",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_1\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"humidity\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [65], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 1,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "1"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "ec43d638-87f0-4715-bf42-ace49dbfccd3",
+          "title": "Sensor 2 - Humidity",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM307-Sensor_2\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"humidity\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [65], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 1,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "1"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "e60fc65a-876f-47df-a0d6-184623a6a333",
+          "title": "Sensor 3 - Humidity",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_3\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"humidity\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [65], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 1,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "1"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "bc6932ca-2315-4a16-82f0-5a07bff3ec90",
+          "title": "Sensor 5 - Humidity",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM103L-Sensor_5\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"humidity\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [65], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 1,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "1"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "f54b2f50-9887-459c-92fd-55bfb380357f",
+          "title": "Sensor 4 - Humidity",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM103-Sensor_4\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"humidity\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [65], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 1,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "1"
+          },
+          "isPaused": false
+        },
+        {
+          "uid": "da3bbbc5-9cd4-4726-9295-839cf93c7797",
+          "title": "Sensor 7 - Humidity",
+          "condition": "C",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80",
+              "model": {
+                "datasource": {
+                  "type": "influxdb",
+                  "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+                },
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "query": "from(bucket: \"iaq-data\")\n  |\u003e range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |\u003e filter(fn: (r) =\u003e r[\"deviceName\"] == \"AM319-Sensor_7\")\n  |\u003e filter(fn: (r) =\u003e r[\"_field\"] == \"humidity\")\n  |\u003e aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |\u003e yield(name: \"mean\")\n",
+                "refId": "A"
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["B"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": { "mode": "dropNN" },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": { "from": 600, "to": 0 },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": { "params": [65], "type": "gt" },
+                    "operator": { "type": "and" },
+                    "query": { "params": ["C"] },
+                    "reducer": { "params": [], "type": "last" },
+                    "type": "query"
+                  }
+                ],
+                "datasource": { "type": "__expr__", "uid": "__expr__" },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+          "panelId": 1,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "c80a570a-dcb9-4f9b-8111-11f588a301f1",
+            "__panelId__": "1"
+          },
+          "labels": {},
+          "isPaused": false
+        }
+      ]
+    }
+  ]
+}

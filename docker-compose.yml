@@ -35,6 +35,7 @@ services:
       - '3000:3000'
     volumes:
       - grafana-data:/var/lib/grafana
+      - ./grafana-configs:/etc/grafana/provisioning
     depends_on:
       - influxdb
 

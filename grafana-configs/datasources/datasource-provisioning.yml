@@ -1,0 +1,21 @@
+# Example datasource provisioning file
+apiVersion: 1
+
+datasources:
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    database: iaq-data
+    basicAuth: true
+    basicAuthUser: "admin"
+    secureJsonData:
+      basicAuthPassword: "iot-g3-password"
+      token: "1e98f924e9f06f872cbda70aa180cf25e4953581de0fe9529d82f29bb344bd14"
+    isDefault: true
+    jsonData:
+      httpMode: GET
+      organization: "iot-g3"
+      defaultBucket: "iaq-data"
+      version: "Flux"
+    uid: a01dbfa3-3c25-4cb3-89f7-0ff923763a80
