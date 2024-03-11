@@ -1,0 +1,381 @@
+[
+    {
+        "id": "6bdd07a3a723c413",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "d918b7a6a8cabaf9",
+        "type": "influxdb in",
+        "z": "6bdd07a3a723c413",
+        "influxdb": "485c0440fca82a70",
+        "name": "",
+        "query": "from(bucket: \"iaq-data\")\n  |> range(start:-1h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "iot-g3",
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "de61113a7c7ed14d"
+            ]
+        ]
+    },
+    {
+        "id": "de61113a7c7ed14d",
+        "type": "function",
+        "z": "6bdd07a3a723c413",
+        "name": "function 1",
+        "func": "let new_msg = [];\n\nfor (var i = 0; i < msg.payload.length - 2; i += 3) {\n    var newObject = {};\n    newObject['Time'] = msg.payload[i]['_time'];\n    // Get the Carbon Dioxide Value\n    newObject['Carbon Dioxide'] = msg.payload[i]['_value'];\n    newObject['Device Name'] = msg.payload[i]['deviceName'];\n    newObject['Humidity'] = msg.payload[i + 1]['_value'];\n    newObject['Temperature'] = msg.payload[i + 2]['_value']; // Assuming this should be i+1 not i+2\n    new_msg.push(newObject);\n}\n\nconsole.log(new_msg);\nmsg.payload = new_msg\nreturn msg;\n\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 260,
+        "wires": [
+            [
+                "c8dd3c0b7eccd3e8"
+            ]
+        ]
+    },
+    {
+        "id": "e61279331634433d",
+        "type": "ui_button",
+        "z": "6bdd07a3a723c413",
+        "name": "",
+        "group": "eb084e26a40b0e52",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Refresh",
+        "tooltip": "fa-refresh",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 60,
+        "y": 320,
+        "wires": [
+            [
+                "d918b7a6a8cabaf9"
+            ]
+        ]
+    },
+    {
+        "id": "c8dd3c0b7eccd3e8",
+        "type": "ui_table",
+        "z": "6bdd07a3a723c413",
+        "group": "eb084e26a40b0e52",
+        "name": "",
+        "order": 1,
+        "width": 12,
+        "height": 4,
+        "columns": [
+            {
+                "field": "Time",
+                "title": "Time",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Device Name",
+                "title": "Device Name",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Carbon Dioxide",
+                "title": "Carbon Dioxide",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Temperature",
+                "title": "Temperature",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            },
+            {
+                "field": "Humidity",
+                "title": "Humidity",
+                "width": "",
+                "align": "left",
+                "formatter": "plaintext",
+                "formatterParams": {
+                    "target": "_blank"
+                }
+            }
+        ],
+        "outputs": 0,
+        "cts": false,
+        "x": 710,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "96d295fb24156fd8",
+        "type": "ui_button",
+        "z": "6bdd07a3a723c413",
+        "name": "",
+        "group": "eb084e26a40b0e52",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "passthru": false,
+        "label": "Download CSV",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 120,
+        "y": 420,
+        "wires": [
+            [
+                "25d4f9a4e7e40bd1"
+            ]
+        ]
+    },
+    {
+        "id": "7773d0c2aae5e921",
+        "type": "function",
+        "z": "6bdd07a3a723c413",
+        "name": "function 2",
+        "func": "let new_msg = [];\n\nfor (var i = 0; i < msg.payload.length - 2; i += 3) {\n    var newObject = {};\n    newObject['Time'] = msg.payload[i]['_time'];\n    // Get the Carbon Dioxide Value\n    newObject['Carbon Dioxide'] = msg.payload[i]['_value'];\n    newObject['Device Name'] = msg.payload[i]['deviceName'];\n    newObject['Humidity'] = msg.payload[i + 1]['_value'];\n    newObject['Temperature'] = msg.payload[i + 2]['_value']; // Assuming this should be i+1 not i+2\n    new_msg.push(newObject);\n}\n\nconsole.log(new_msg);\nmsg.payload = new_msg\nreturn msg;\n\n\n\n\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 440,
+        "wires": [
+            [
+                "0125f3c09e41979c"
+            ]
+        ]
+    },
+    {
+        "id": "25d4f9a4e7e40bd1",
+        "type": "influxdb in",
+        "z": "6bdd07a3a723c413",
+        "influxdb": "485c0440fca82a70",
+        "name": "",
+        "query": "from(bucket: \"iaq-data\")\n  |> range(start:-1h)\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "org": "iot-g3",
+        "x": 390,
+        "y": 360,
+        "wires": [
+            [
+                "7773d0c2aae5e921"
+            ]
+        ]
+    },
+    {
+        "id": "0125f3c09e41979c",
+        "type": "csv",
+        "z": "6bdd07a3a723c413",
+        "name": "",
+        "sep": ",",
+        "hdrin": false,
+        "hdrout": "all",
+        "multi": "one",
+        "ret": "\\n",
+        "temp": "Time,Device Name,Temperature,Carbon Dioxide,Humidity",
+        "skip": "0",
+        "strings": true,
+        "include_empty_strings": "",
+        "include_null_values": "",
+        "x": 830,
+        "y": 420,
+        "wires": [
+            [
+                "a71e399598f09962"
+            ]
+        ]
+    },
+    {
+        "id": "a71e399598f09962",
+        "type": "function",
+        "z": "6bdd07a3a723c413",
+        "name": "filePath",
+        "func": "msg.path = \"/data/sensor_values.csv\"\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1000,
+        "y": 440,
+        "wires": [
+            [
+                "48e2363a094b205f"
+            ]
+        ]
+    },
+    {
+        "id": "48e2363a094b205f",
+        "type": "file",
+        "z": "6bdd07a3a723c413",
+        "name": "",
+        "filename": "path",
+        "filenameType": "msg",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 1200,
+        "y": 440,
+        "wires": [
+            [
+                "38a14041516eb88d"
+            ]
+        ]
+    },
+    {
+        "id": "38a14041516eb88d",
+        "type": "trigger",
+        "z": "6bdd07a3a723c413",
+        "name": "",
+        "op1": "open",
+        "op2": "reset",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "250",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1340,
+        "y": 540,
+        "wires": [
+            [
+                "8abb4b2cc6d3e755"
+            ]
+        ]
+    },
+    {
+        "id": "8abb4b2cc6d3e755",
+        "type": "change",
+        "z": "6bdd07a3a723c413",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "command",
+                "pt": "msg",
+                "to": "msg.payload",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1570,
+        "y": 600,
+        "wires": [
+            [
+                "6fb131370a4ac02c"
+            ]
+        ]
+    },
+    {
+        "id": "6fb131370a4ac02c",
+        "type": "ui_template",
+        "z": "6bdd07a3a723c413",
+        "group": "eb084e26a40b0e52",
+        "name": "",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "format": "<script>\n    (function(scope){\n        // Watch for changes in the 'msg' variable\n        scope.$watch('msg', function(msg) {\n            // Check if the payload of the message is 'open'\n            if (msg.payload === 'open') {\n                // Open a new window to the specified URL\n                window.open('http://localhost:1880/sensor_values.csv', \"_blank\");\n            }\n        });\n    })(scope);\n</script>\n",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "className": "",
+        "x": 1840,
+        "y": 600,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "485c0440fca82a70",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "database",
+        "name": "",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://influxdb:8086",
+        "timeout": "10",
+        "rejectUnauthorized": true
+    },
+    {
+        "id": "eb084e26a40b0e52",
+        "type": "ui_group",
+        "name": "Sensor Readings",
+        "tab": "a07582cb0db92523",
+        "order": 1,
+        "disp": true,
+        "width": 12,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a07582cb0db92523",
+        "type": "ui_tab",
+        "name": "Database",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
