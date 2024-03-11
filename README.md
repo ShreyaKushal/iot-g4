@@ -66,7 +66,7 @@ docker compose up
     <li>
        Create report generation link in dashboard: <br>
        - Home > Dashboards > *Dashboard of choice* > Dashboard settings > Links <br>
-         - Add Dashboard Link > *Any Title* > Type: Link > URL: http://localhost:8686/api/v5/report/`<Dashboard uID>`?apitoken=`<Service Account API Token>` <br>
+         - Add Dashboard Link > *Any Title* > Type: Link > URL: http://localhost:8686/api/v5/report/`\<Dashboard uID\>`?apitoken=`<Service Account API Token\>` <br>
          - Options: <br>
            - [x] Include current time range <br>
            - [x] Include current template variable values <br>
