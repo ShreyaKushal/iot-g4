@@ -55,6 +55,24 @@ docker compose up
         </ul>
     </li>
 </ul>
+5. Create Service account to allow Grafana Report generator to use tokenID parameter
+<ul>
+    <li>
+        Create Service account to get API token: <br>
+        - Home > Administration > Users and access > Service accounts <br>
+         - Add service account > *fill in details* > Add service account token <br>
+         - Display name (choose to set or auto) > Expiration: No expiration > Generate token > Copy clipboard > paste somewhere to save <br>
+    </li>
+    <li>
+       Create report generation link in dashboard: <br>
+       - Home > Dashboards > *Dashboard of choice* > Dashboard settings > Links <br>
+        - Add Dashboard Link > *Title* > Type: Link > URL: http://localhost:8686/api/v5/report/<Dashboard uID>?apitoken=<Service Account API Token>
+        - Options: Check checkbox for *Include current time range* and *Include current template variable values*
+        - Apply
+       - Save Dashboard 
+    </li>
+
+</ul>
 
 # Login Credentials
 

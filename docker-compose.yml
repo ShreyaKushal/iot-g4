@@ -36,8 +36,23 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./grafana-configs:/etc/grafana/provisioning
+
+    environment:
+      GF_RENDERING_SERVER_URL: http://grafana-image-renderer:8081/render
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000/
+      GF_LOG_FILTERS: rendering:debug
     depends_on:
       - influxdb
+
+  grafana-image-renderer:
+    image: grafana/grafana-image-renderer:latest
+    ports:
+      - "8081:8081"
+  grafana-reporter:
+    image: izakmarais/grafana-reporter:${gr_version:-latest}
+    command: "-ip grafana:3000"
+    ports:
+      - "8686:8686"
 
   mosquitto:
     image: eclipse-mosquitto

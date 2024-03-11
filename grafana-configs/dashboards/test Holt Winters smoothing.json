@@ -18,8 +18,20 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 6,
-  "links": [],
+  "links": [
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": false,
+      "title": "Generate PDF report",
+      "tooltip": "Click to generate PDF report",
+      "type": "link",
+      "url": "http://localhost:8686/api/v5/report/d737d2bf-9422-4a9d-8c6a-cfec5294ba37?apitoken=glsa_zNITkcfNkt9izxgLzvSSXmNWCQskkW25_e37fded7"
+    }
+  ],
   "liveNow": false,
   "panels": [
     {
@@ -132,13 +144,13 @@
     "list": []
   },
   "time": {
-    "from": "2024-03-03T20:54:21.246Z",
-    "to": "2024-03-04T20:54:21.246Z"
+    "from": "2024-03-11T05:09:00.000Z",
+    "to": "2024-03-11T12:39:00.000Z"
   },
   "timepicker": {},
   "timezone": "",
   "title": "test Holt Winters smoothing",
   "uid": "d737d2bf-9422-4a9d-8c6a-cfec5294ba37",
-  "version": 7,
+  "version": 1,
   "weekStart": ""
 }
