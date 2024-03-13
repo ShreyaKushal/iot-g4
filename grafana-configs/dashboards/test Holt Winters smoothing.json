@@ -29,7 +29,7 @@
       "title": "Generate PDF report",
       "tooltip": "Click to generate PDF report",
       "type": "link",
-      "url": "http://localhost:8686/api/v5/report/d737d2bf-9422-4a9d-8c6a-cfec5294ba37?apitoken=glsa_zNITkcfNkt9izxgLzvSSXmNWCQskkW25_e37fded7"
+      "url": "http://localhost:8686/api/v5/report/d737d2bf-9422-4a9d-8c6a-cfec5294ba37?apitoken=glsa_QMv2lxVe9afG3ME5BoG0IFX8yKgVtdOP_06324b5c"
     }
   ],
   "liveNow": false,
