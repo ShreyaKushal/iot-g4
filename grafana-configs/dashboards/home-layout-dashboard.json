@@ -1,281 +1,985 @@
 {
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": {
-            "type": "grafana",
-            "uid": "-- Grafana --"
-          },
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "type": "dashboard"
-        }
-      ]
-    },
-    "editable": true,
-    "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
-    "id": 20,
-    "links": [],
-    "liveNow": false,
-    "panels": [
+  "annotations": {
+    "list": [
       {
+        "builtIn": 1,
         "datasource": {
-          "type": "influxdb",
-          "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+          "type": "grafana",
+          "uid": "-- Grafana --"
         },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "thresholds"
-            },
-            "decimals": 0,
-            "fieldMinMax": false,
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
-                }
-              ]
-            },
-            "unit": "none",
-            "unitScale": true
-          },
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 19,
-          "w": 24,
-          "x": 0,
-          "y": 0
-        },
-        "id": 2,
-        "options": {
-          "inlineEditing": true,
-          "panZoom": false,
-          "root": {
-            "background": {
-              "color": {
-                "fixed": "transparent"
-              },
-              "image": {
-                "fixed": "img/bg/IoT_BG.png",
-                "mode": "fixed"
-              }
-            },
-            "border": {
-              "color": {
-                "fixed": "dark-green"
-              },
-              "width": 0
-            },
-            "constraint": {
-              "horizontal": "left",
-              "vertical": "top"
-            },
-            "elements": [
-              {
-                "background": {
-                  "color": {
-                    "field": "carbon dioxide AM319-Sensor_1",
-                    "fixed": "#D9D9D9"
-                  }
-                },
-                "border": {
-                  "color": {
-                    "fixed": "dark-green"
-                  }
-                },
-                "config": {
-                  "align": "center",
-                  "color": {
-                    "fixed": "#000000"
-                  },
-                  "size": 16,
-                  "text": {
-                    "field": "carbon dioxide AM319-Sensor_1",
-                    "fixed": "",
-                    "mode": "field"
-                  },
-                  "valign": "middle"
-                },
-                "constraint": {
-                  "horizontal": "left",
-                  "vertical": "top"
-                },
-                "name": "Element 1",
-                "placement": {
-                  "height": 29.062501907348633,
-                  "left": 218,
-                  "top": 364,
-                  "width": 92.6388931274414
-                },
-                "type": "metric-value"
-              },
-              {
-                "background": {
-                  "color": {
-                    "field": "humidity AM319-Sensor_1",
-                    "fixed": "#D9D9D9"
-                  }
-                },
-                "border": {
-                  "color": {
-                    "fixed": "dark-green"
-                  }
-                },
-                "config": {
-                  "align": "center",
-                  "color": {
-                    "fixed": "#000000"
-                  },
-                  "size": 16,
-                  "text": {
-                    "field": "humidity AM319-Sensor_1",
-                    "fixed": "",
-                    "mode": "field"
-                  },
-                  "valign": "middle"
-                },
-                "constraint": {
-                  "horizontal": "left",
-                  "vertical": "top"
-                },
-                "name": "Element 2",
-                "placement": {
-                  "height": 29.062501907348633,
-                  "left": 220,
-                  "top": 401,
-                  "width": 92.65625762939453
-                },
-                "type": "metric-value"
-              },
-              {
-                "background": {
-                  "color": {
-                    "field": "temperature AM319-Sensor_1",
-                    "fixed": "#D9D9D9"
-                  }
-                },
-                "border": {
-                  "color": {
-                    "fixed": "dark-green"
-                  }
-                },
-                "config": {
-                  "align": "center",
-                  "color": {
-                    "fixed": "#000000"
-                  },
-                  "size": 16,
-                  "text": {
-                    "field": "temperature AM319-Sensor_1",
-                    "fixed": "",
-                    "mode": "field"
-                  },
-                  "valign": "middle"
-                },
-                "connections": [],
-                "constraint": {
-                  "horizontal": "left",
-                  "vertical": "top"
-                },
-                "name": "Element 3",
-                "placement": {
-                  "height": 29.062501907348633,
-                  "left": 219,
-                  "top": 436,
-                  "width": 92.64757537841797
-                },
-                "type": "metric-value"
-              },
-              {
-                "background": {
-                  "color": {
-                    "fixed": "transparent"
-                  }
-                },
-                "border": {
-                  "color": {
-                    "fixed": "dark-green"
-                  }
-                },
-                "config": {
-                  "align": "center",
-                  "color": {
-                    "fixed": "rgb(204, 204, 220)"
-                  },
-                  "size": 16,
-                  "text": {
-                    "fixed": "AM319-Sensor_1"
-                  },
-                  "valign": "middle"
-                },
-                "constraint": {
-                  "horizontal": "left",
-                  "vertical": "top"
-                },
-                "name": "Element 4",
-                "placement": {
-                  "height": 50.000003814697266,
-                  "left": 116,
-                  "top": 317,
-                  "width": 165.00001525878906
-                },
-                "type": "text"
-              }
-            ],
-            "name": "Element 1710319879016",
-            "placement": {
-              "height": 100,
-              "left": 0,
-              "top": 0,
-              "width": 100
-            },
-            "type": "frame"
-          },
-          "showAdvancedTypes": true
-        },
-        "pluginVersion": "10.3.3",
-        "targets": [
-          {
-            "datasource": {
-              "type": "influxdb",
-              "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
-            },
-            "query": "from(bucket: \"iaq-data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM319-Sensor_1\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\" or r[\"_field\"] == \"carbon dioxide\" or r[\"_field\"] == \"humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
-            "refId": "A"
-          }
-        ],
-        "title": "Panel Title",
-        "type": "canvas"
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
       }
-    ],
-    "refresh": "",
-    "schemaVersion": 39,
-    "tags": [],
-    "templating": {
-      "list": []
-    },
-    "time": {
-      "from": "now-6h",
-      "to": "now"
-    },
-    "timepicker": {},
-    "timezone": "",
-    "title": "Home Layout",
-    "uid": "b63a93d8-027d-4863-92f9-0cd09291940f",
-    "version": 5,
-    "weekStart": ""
-  }
-  
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 22,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 0,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none",
+          "unitScale": true
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/temperature*/"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 25.5
+                    },
+                    {
+                      "color": "red",
+                      "value": 27
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "celsius"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/carbon dioxide*/"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 600
+                    },
+                    {
+                      "color": "red",
+                      "value": 800
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "ppm"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byRegexp",
+              "options": "/humidity*/"
+            },
+            "properties": [
+              {
+                "id": "thresholds",
+                "value": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "#EAB839",
+                      "value": 60
+                    },
+                    {
+                      "color": "red",
+                      "value": 65
+                    }
+                  ]
+                }
+              },
+              {
+                "id": "unit",
+                "value": "percent"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 19,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "options": {
+        "inlineEditing": true,
+        "panZoom": false,
+        "root": {
+          "background": {
+            "color": {
+              "fixed": "transparent"
+            },
+            "image": {
+              "fixed": "img/bg/IoT_BG.png",
+              "mode": "fixed"
+            },
+            "size": "contain"
+          },
+          "border": {
+            "color": {
+              "fixed": "dark-green"
+            },
+            "width": 0
+          },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
+          "elements": [
+            {
+              "background": {
+                "color": {
+                  "field": "carbon dioxide AM319-Sensor_1",
+                  "fixed": "#D9D9D9"
+                },
+                "image": {
+                  "fixed": ""
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "carbon dioxide AM319-Sensor_1",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 1",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 218,
+                "top": 382,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "humidity AM319-Sensor_1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "humidity AM319-Sensor_1",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 2",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 218,
+                "top": 449,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "temperature AM319-Sensor_1",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "temperature AM319-Sensor_1",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 3",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 218,
+                "top": 416,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#3d3d3d"
+                },
+                "size": 12,
+                "text": {
+                  "fixed": "AM319-Sensor_1",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 4",
+              "placement": {
+                "height": 39.93055725097656,
+                "left": 208,
+                "top": 342,
+                "width": 110.98957061767578
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "carbon dioxide AM307-Sensor_2",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "carbon dioxide AM307-Sensor_2",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 5",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 402,
+                "top": 381,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "humidity AM307-Sensor_2",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "humidity AM307-Sensor_2",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 6",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 403,
+                "top": 447,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "temperature AM307-Sensor_2",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "temperature AM307-Sensor_2",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 7",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 403,
+                "top": 414,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#3d3d3d"
+                },
+                "size": 12,
+                "text": {
+                  "fixed": "AM307-Sensor_2",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 8",
+              "placement": {
+                "height": 39.93055725097656,
+                "left": 399,
+                "top": 344,
+                "width": 110.98958587646484
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "carbon dioxide AM319-Sensor_3",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "carbon dioxide AM319-Sensor_3",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 9",
+              "placement": {
+                "height": 27.986112594604492,
+                "left": 1218,
+                "top": 374,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "humidity AM319-Sensor_3",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "humidity AM319-Sensor_3",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 10",
+              "placement": {
+                "height": 27.994827270507812,
+                "left": 1219,
+                "top": 440,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "temperature AM319-Sensor_3",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "temperature AM319-Sensor_3",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 11",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 1219,
+                "top": 407,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#3d3d3d"
+                },
+                "size": 12,
+                "text": {
+                  "fixed": "AM319-Sensor_3",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 12",
+              "placement": {
+                "height": 39.93055725097656,
+                "left": 1211,
+                "top": 338,
+                "width": 110.98958587646484
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "carbon dioxide AM103-Sensor_4",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "carbon dioxide AM103-Sensor_4",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 13",
+              "placement": {
+                "height": 27.986129760742188,
+                "left": 1445,
+                "top": 144,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "humidity AM103-Sensor_4",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "humidity AM103-Sensor_4",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 14",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 1446,
+                "top": 210,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "temperature AM103-Sensor_4",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "temperature AM103-Sensor_4",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 15",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 1446,
+                "top": 177,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#3d3d3d"
+                },
+                "size": 12,
+                "text": {
+                  "fixed": "AM103-Sensor_4",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 16",
+              "placement": {
+                "height": 39.93055725097656,
+                "left": 1444,
+                "top": 104,
+                "width": 110.98958587646484
+              },
+              "type": "text"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "carbon dioxide AM103L-Sensor_5",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "carbon dioxide AM103L-Sensor_5",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 17",
+              "placement": {
+                "height": 27.986112594604492,
+                "left": 528,
+                "top": 132,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "humidity AM103L-Sensor_5",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "humidity AM103L-Sensor_5",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 18",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 529,
+                "top": 198,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "field": "temperature AM103L-Sensor_5",
+                  "fixed": "#D9D9D9"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#000000"
+                },
+                "size": 12,
+                "text": {
+                  "field": "temperature AM103L-Sensor_5",
+                  "fixed": "",
+                  "mode": "field"
+                },
+                "valign": "middle"
+              },
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 19",
+              "placement": {
+                "height": 27.994792938232422,
+                "left": 529,
+                "top": 165,
+                "width": 100.00000762939453
+              },
+              "type": "metric-value"
+            },
+            {
+              "background": {
+                "color": {
+                  "fixed": "transparent"
+                }
+              },
+              "border": {
+                "color": {
+                  "fixed": "dark-green"
+                }
+              },
+              "config": {
+                "align": "center",
+                "color": {
+                  "fixed": "#3d3d3d"
+                },
+                "size": 12,
+                "text": {
+                  "fixed": "AM103L-Sensor_5",
+                  "mode": "fixed"
+                },
+                "valign": "middle"
+              },
+              "connections": [],
+              "constraint": {
+                "horizontal": "left",
+                "vertical": "top"
+              },
+              "name": "Element 20",
+              "placement": {
+                "height": 39.93055725097656,
+                "left": 527,
+                "top": 92,
+                "width": 110.98958587646484
+              },
+              "type": "text"
+            }
+          ],
+          "name": "Element 1710319879016",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "top": 0,
+            "width": 100
+          },
+          "type": "frame"
+        },
+        "showAdvancedTypes": true
+      },
+      "pluginVersion": "10.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+          },
+          "query": "from(bucket: \"iaq-data\")\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\n  |> filter(fn: (r) => r[\"deviceName\"] == \"AM103-Sensor_4\" or r[\"deviceName\"] == \"AM103L-Sensor_5\" or r[\"deviceName\"] == \"AM307-Sensor_2\" or r[\"deviceName\"] == \"AM319-Sensor_1\" or r[\"deviceName\"] == \"AM319-Sensor_3\" or r[\"deviceName\"] == \"AM319-Sensor_7\")\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\" or r[\"_field\"] == \"carbon dioxide\" or r[\"_field\"] == \"humidity\")\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
+          "refId": "A"
+        }
+      ],
+      "title": "Panel Title",
+      "transformations": [],
+      "type": "canvas"
+    }
+  ],
+  "refresh": "",
+  "schemaVersion": 39,
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "2024-03-13T02:41:11.453Z",
+    "to": "2024-03-14T02:41:11.453Z"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Home Layout Copy",
+  "uid": "aef59c6e-1453-45b4-b031-df478c81dc79",
+  "version": 2,
+  "weekStart": ""
+}
