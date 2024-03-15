@@ -162,7 +162,7 @@
               "fixed": "transparent"
             },
             "image": {
-              "fixed": "img/bg/IoT_BG.png",
+              "fixed": "img/bg/IoT_Hospital.png",
               "mode": "fixed"
             },
             "size": "contain"
