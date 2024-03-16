@@ -18,7 +18,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 22,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -173,10 +172,6 @@
             },
             "width": 0
           },
-          "constraint": {
-            "horizontal": "left",
-            "vertical": "top"
-          },
           "elements": [
             {
               "background": {
@@ -213,10 +208,10 @@
               },
               "name": "Element 1",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 218,
-                "top": 382,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 25,
+                "top": 545,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -252,10 +247,10 @@
               },
               "name": "Element 2",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 218,
-                "top": 449,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 25,
+                "top": 612,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -291,10 +286,10 @@
               },
               "name": "Element 3",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 218,
-                "top": 416,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 25,
+                "top": 579,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -327,10 +322,10 @@
               },
               "name": "Element 4",
               "placement": {
-                "height": 39.93055725097656,
-                "left": 208,
-                "top": 342,
-                "width": 110.98957061767578
+                "height": 39.921875,
+                "left": 15,
+                "top": 505,
+                "width": 110.984375
               },
               "type": "text"
             },
@@ -366,10 +361,10 @@
               },
               "name": "Element 5",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 402,
-                "top": 381,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 466,
+                "top": 545,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -404,10 +399,10 @@
               },
               "name": "Element 6",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 403,
-                "top": 447,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 467,
+                "top": 611,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -443,10 +438,10 @@
               },
               "name": "Element 7",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 403,
-                "top": 414,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 467,
+                "top": 578,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -479,10 +474,10 @@
               },
               "name": "Element 8",
               "placement": {
-                "height": 39.93055725097656,
-                "left": 399,
-                "top": 344,
-                "width": 110.98958587646484
+                "height": 39.921875,
+                "left": 463,
+                "top": 508,
+                "width": 110.984375
               },
               "type": "text"
             },
@@ -518,10 +513,10 @@
               },
               "name": "Element 9",
               "placement": {
-                "height": 27.986112594604492,
-                "left": 1218,
-                "top": 374,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 890,
+                "top": 548,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -556,10 +551,10 @@
               },
               "name": "Element 10",
               "placement": {
-                "height": 27.994827270507812,
-                "left": 1219,
-                "top": 440,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 891,
+                "top": 614,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -594,10 +589,10 @@
               },
               "name": "Element 11",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 1219,
-                "top": 407,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 891,
+                "top": 581,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -630,10 +625,10 @@
               },
               "name": "Element 12",
               "placement": {
-                "height": 39.93055725097656,
-                "left": 1211,
-                "top": 338,
-                "width": 110.98958587646484
+                "height": 39.921875,
+                "left": 883,
+                "top": 512,
+                "width": 110.984375
               },
               "type": "text"
             },
@@ -668,10 +663,10 @@
               },
               "name": "Element 13",
               "placement": {
-                "height": 27.986129760742188,
-                "left": 1445,
-                "top": 144,
-                "width": 100.00000762939453
+                "height": 22.441177106609963,
+                "left": 838,
+                "top": 57,
+                "width": 80.19173934981619
               },
               "type": "metric-value"
             },
@@ -706,10 +701,10 @@
               },
               "name": "Element 14",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 1446,
-                "top": 210,
-                "width": 100.00000762939453
+                "height": 22.441177106609963,
+                "left": 839,
+                "top": 123,
+                "width": 80.19173934981619
               },
               "type": "metric-value"
             },
@@ -744,10 +739,10 @@
               },
               "name": "Element 15",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 1446,
-                "top": 177,
-                "width": 100.00000762939453
+                "height": 22.441177106609963,
+                "left": 839,
+                "top": 90,
+                "width": 80.19173934981619
               },
               "type": "metric-value"
             },
@@ -780,10 +775,10 @@
               },
               "name": "Element 16",
               "placement": {
-                "height": 39.93055725097656,
-                "left": 1444,
-                "top": 104,
-                "width": 110.98958587646484
+                "height": 32.01406599149427,
+                "left": 837,
+                "top": 17,
+                "width": 89
               },
               "type": "text"
             },
@@ -818,10 +813,10 @@
               },
               "name": "Element 17",
               "placement": {
-                "height": 27.986112594604492,
-                "left": 528,
-                "top": 132,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 695,
+                "top": 62,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -856,10 +851,10 @@
               },
               "name": "Element 18",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 529,
-                "top": 198,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 696,
+                "top": 128,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -894,10 +889,10 @@
               },
               "name": "Element 19",
               "placement": {
-                "height": 27.994792938232422,
-                "left": 529,
-                "top": 165,
-                "width": 100.00000762939453
+                "height": 27.984375,
+                "left": 696,
+                "top": 95,
+                "width": 100
               },
               "type": "metric-value"
             },
@@ -931,21 +926,15 @@
               },
               "name": "Element 20",
               "placement": {
-                "height": 39.93055725097656,
-                "left": 527,
-                "top": 92,
-                "width": 110.98958587646484
+                "height": 39.921875,
+                "left": 694,
+                "top": 22,
+                "width": 110.984375
               },
               "type": "text"
             }
           ],
           "name": "Element 1710319879016",
-          "placement": {
-            "height": 100,
-            "left": 0,
-            "top": 0,
-            "width": 100
-          },
           "type": "frame"
         },
         "showAdvancedTypes": true
@@ -980,6 +969,6 @@
   "timezone": "",
   "title": "Home Layout",
   "uid": "aef59c6e-1453-45b4-b031-df478c81dc79",
-  "version": 2,
+  "version": 1,
   "weekStart": ""
 }
