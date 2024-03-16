@@ -64,6 +64,12 @@ services:
       - mosquitto-data:/mosquitto/data
       - mosquitto-log:/mosquitto/log
     restart: unless-stopped
+  machine-learning:
+    build: 
+      context: ./air_prediction
+    depends_on:
+      - nodered
+
 
 volumes:
   influxdb-data:
