@@ -172,6 +172,10 @@
             },
             "width": 0
           },
+          "constraint": {
+            "horizontal": "left",
+            "vertical": "top"
+          },
           "elements": [
             {
               "background": {
@@ -935,6 +939,12 @@
             }
           ],
           "name": "Element 1710319879016",
+          "placement": {
+            "height": 100,
+            "left": 0,
+            "top": 0,
+            "width": 100
+          },
           "type": "frame"
         },
         "showAdvancedTypes": true
@@ -950,7 +960,7 @@
           "refId": "A"
         }
       ],
-      "title": "Panel Title",
+      "title": "Hospital Floor Layout",
       "transformations": [],
       "type": "canvas"
     }
@@ -967,8 +977,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Home Layout",
+  "title": "Hospital floor layout",
   "uid": "aef59c6e-1453-45b4-b031-df478c81dc79",
-  "version": 1,
+  "version": 2,
   "weekStart": ""
 }
