@@ -1,0 +1,712 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 31,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": "left",
+              "cellOptions": {
+                "type": "auto"
+              },
+              "inspect": false,
+              "minWidth": 50
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unitScale": true
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "temperature"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "celsius"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Temperature"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "carbon dioxide"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ppm"
+                },
+                {
+                  "id": "displayName",
+                  "value": "CO2"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "humidity"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "humidity"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Humidity"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "_time"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Time"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "CO2"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 162
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Humidity"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 152
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Time"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 189
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 21,
+          "w": 7,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "cellHeight": "sm",
+          "footer": {
+            "countRows": false,
+            "fields": "",
+            "reducer": [
+              "sum"
+            ],
+            "show": false
+          },
+          "frameIndex": 2,
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "10.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+            },
+            "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"${device_names}\")\r\n  |> map(fn: (r) => ({r with _value: float(v: r._value)}))\r\n  |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> yield(name: \"mean\")\r\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Panel Title",
+        "type": "table"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "dashed+area"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 25.5
+                },
+                {
+                  "color": "red",
+                  "value": 27
+                }
+              ]
+            },
+            "unitScale": true
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "temperature"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "celsius"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Temperature"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "carbon dioxide"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ppm"
+                },
+                {
+                  "id": "displayName",
+                  "value": "CO2"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "humidity"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "humidity"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Humidity"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "_time"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Time"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 17,
+          "x": 7,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "10.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+            },
+            "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"${device_names}\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\r\n  |> map(fn: (r) => ({r with _value: float(v: r._value)}))\r\n  |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> yield(name: \"mean\")\r\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Temperature",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "orange",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "dashed+area"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 60
+                },
+                {
+                  "color": "red",
+                  "value": 65
+                }
+              ]
+            },
+            "unitScale": true
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "temperature"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "celsius"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Temperature"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "carbon dioxide"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ppm"
+                },
+                {
+                  "id": "displayName",
+                  "value": "CO2"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "humidity"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "humidity"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Humidity"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "_time"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Time"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 17,
+          "x": 7,
+          "y": 7
+        },
+        "id": 4,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "10.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+            },
+            "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"${device_names}\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> map(fn: (r) => ({r with _value: float(v: r._value)}))\r\n  |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> yield(name: \"mean\")\r\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Humidity",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "purple",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 1,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "dashed+area"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "#EAB839",
+                  "value": 600
+                },
+                {
+                  "color": "red",
+                  "value": 800
+                }
+              ]
+            },
+            "unitScale": true
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "temperature"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "celsius"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Temperature"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "carbon dioxide"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "ppm"
+                },
+                {
+                  "id": "displayName",
+                  "value": "CO2"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "humidity"
+              },
+              "properties": [
+                {
+                  "id": "unit",
+                  "value": "humidity"
+                },
+                {
+                  "id": "displayName",
+                  "value": "Humidity"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "_time"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Time"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 7,
+          "w": 17,
+          "x": 7,
+          "y": 14
+        },
+        "id": 5,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "10.3.3",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+            },
+            "query": "from(bucket: \"iaq-data\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"iaq-data\")\r\n  |> filter(fn: (r) => r[\"deviceName\"] == \"${device_names}\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"carbon dioxide\")\r\n  |> map(fn: (r) => ({r with _value: float(v: r._value)}))\r\n  |> aggregateWindow(every: 10m, fn: mean, createEmpty: false)\r\n  |> pivot(rowKey:[\"_time\"], columnKey: [\"_field\"], valueColumn: \"_value\")\r\n  |> yield(name: \"mean\")\r\n",
+            "refId": "A"
+          }
+        ],
+        "title": "Carbon Dioxide",
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 39,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": true,
+            "text": "AM319-Sensor_3",
+            "value": "AM319-Sensor_3"
+          },
+          "datasource": {
+            "type": "influxdb",
+            "uid": "a01dbfa3-3c25-4cb3-89f7-0ff923763a80"
+          },
+          "definition": "import \"influxdata/influxdb/v1\" v1.tagValues(bucket: \"iaq-data\", tag: \"deviceName\")\r\n\r\n",
+          "hide": 0,
+          "includeAll": false,
+          "label": "Device Name",
+          "multi": false,
+          "name": "device_names",
+          "options": [],
+          "query": "import \"influxdata/influxdb/v1\" v1.tagValues(bucket: \"iaq-data\", tag: \"deviceName\")\r\n\r\n",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 7,
+          "type": "query"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-12h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Analytics Dashboard",
+    "uid": "e5947f5c-8ae6-48cc-90a4-ba33a3c01e5a",
+    "version": 4,
+    "weekStart": ""
+  }
