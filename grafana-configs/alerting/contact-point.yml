@@ -1,0 +1,88 @@
+apiVersion: 1
+contactPoints:
+  - orgId: 1
+    name: telegram
+    receivers:
+      - uid: d5f5322c-0c85-4c3b-a79e-80c3c46b1b43
+        type: telegram
+        settings:
+          bottoken: 7166329342:AAFQjYyhmt3w-SLx7RlpAAmg-kymMlZyjJE
+          chatid: "-4193361266"
+          disable_notification: false
+          disable_web_page_preview: false
+          message: '{{ template "email.message" . }}'
+          parse_mode: None
+          protect_content: false
+        disableResolveMessage: false
+templates:
+  - orgId: 1
+    name: alert_template
+    template: |
+      {{ define "email.message" }}
+        There are {{ len .Alerts.Firing }} firing alert(s), and {{ len .Alerts.Resolved }} resolved alert(s)
+
+        {{ if .Alerts.Firing }}
+        Firing alerts:
+        {{- range .Alerts.Firing }}
+          {{- $deviceName := "" }}
+          {{- $metricValue := "" }}
+          {{- $metricName := .Labels.grafana_folder }}
+          {{- $unit := "" }}
+          {{- $datasourceIssue := false }}
+          {{- if eq .Labels.alertname "DatasourceNoData" }}{{ $datasourceIssue = true }}{{ end }}
+          {{- if eq $metricName "Carbon Dioxide" }}{{ $unit = "ppm" }}{{ end }}
+          {{- if eq $metricName "Humidity" }}{{ $unit = "%" }}{{ end }}
+          {{- if eq $metricName "Temperature" }}{{ $unit = "°C" }}{{ end }}
+          {{- range .Labels.SortedPairs }}
+            {{- if eq .Name "deviceName" }}{{ $deviceName = .Value }}{{ end }}
+          {{- end }}
+          {{- range $key, $value := .Values }}
+            {{- if eq $key "B" }}{{ $metricValue = $value }}{{ end }}
+          {{- end }}
+          {{ if $datasourceIssue }}
+        Data source issue detected for {{ $metricName }} in {{ .Labels.rulename }}.
+        - Alert Name: {{ .Labels.alertname }}
+        - Grafana Folder: {{ $metricName }}
+        - Started At: {{ .StartsAt }}
+          {{ else }}
+        {{ $metricName }} levels are above threshold at {{ $metricValue }}{{ $unit }}, detected at {{ $deviceName }}.
+        - Alert Name: {{ .Labels.alertname }}
+        - Device Name: {{ $deviceName }}
+        - Grafana Folder: {{ $metricName }}
+        - Started At: {{ .StartsAt }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ if .Alerts.Resolved }}
+        Resolved alerts:
+        {{- range .Alerts.Resolved }}
+          {{- $deviceName := "" }}
+          {{- $metricValue := "" }}
+          {{- $metricName := .Labels.grafana_folder }}
+          {{- $unit := "" }}
+          {{- $datasourceIssue := false }}
+          {{- if eq .Labels.alertname "DatasourceNoData" }}{{ $datasourceIssue = true }}{{ end }}
+          {{- if eq $metricName "Carbon Dioxide" }}{{ $unit = "ppm" }}{{ end }}
+          {{- if eq $metricName "Humidity" }}{{ $unit = "%" }}{{ end }}
+          {{- if eq $metricName "Temperature" }}{{ $unit = "°C" }}{{ end }}
+          {{- range .Labels.SortedPairs }}
+            {{- if eq .Name "deviceName" }}{{ $deviceName = .Value }}{{ end }}
+          {{- end }}
+          {{- range $key, $value := .Values }}
+            {{- if eq $key "B" }}{{ $metricValue = $value }}{{ end }}
+          {{- end }}
+          {{ if $datasourceIssue }}
+        Data source issue resolved for {{ $metricName }} in {{ .Labels.rulename }}.
+        - Alert Name: {{ .Labels.alertname }}
+        - Grafana Folder: {{ $metricName }}
+        - Ended At: {{ .EndsAt }}
+          {{ else }}
+        {{ $metricName }} levels returned to normal at {{ $metricValue }}{{ $unit }}, detected at {{ $deviceName }}.
+        - Alert Name: {{ .Labels.alertname }}
+        - Device Name: {{ $deviceName }}
+        - Grafana Folder: {{ $metricName }}
+        - Ended At: {{ .EndsAt }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
