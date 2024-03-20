@@ -19,7 +19,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 12,
   "links": [
     {
       "asDropdown": false,
@@ -425,7 +424,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "CO2 levels"
+              "options": "Temperature (Celcius)"
             },
             "properties": [
               {
@@ -1060,6 +1059,6 @@
   "timezone": "",
   "title": "IAQ Report Dashboard",
   "uid": "bf902a40-1257-452b-99ae-3304c18e5824",
-  "version": 28,
+  "version": 1,
   "weekStart": ""
 }
