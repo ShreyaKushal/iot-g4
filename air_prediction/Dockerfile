@@ -5,7 +5,7 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copy the Python script and pickle file into the container
-COPY quality_prediction.py model.pkl /app/
+COPY quality_prediction.py model.pkl arima_co2.pickle arima_humidity.pickle arima_temperature.pickle /app/
 
 # Install any needed dependencies specified in requirements.txt
 # For example, if you use scikit-learn for your model, include it here

@@ -1,17 +1,25 @@
 import pickle
+from flask import Flask, request
 
-# open a file, where you stored the pickled data
-file = open('model.pkl', 'rb')
+app = Flask(__name__)
 
-# dump information to that file
-data = pickle.load(file)
+# Open the pickle file and load the model
+with open('arima_co2.pickle', 'rb') as file:
+    model = pickle.load(file)
 
-# close the file
-file.close()
+@app.route('/predict', methods=['POST'])
+def predict():
+    # Receive the data from Node-RED
+    data = request.get_data()
 
-print('Showing the pickled data:')
+    if data:
+        # Process the received data using the model
+        result = model.predict(data)  # Assuming 'model' has a predict method
+        print('Received data:', data)
+        print('Prediction result:', result)
+        return str(result)  # Return the prediction result as a response
+    else:
+        return 'No data received'
 
-cnt = 0
-for item in data:
-    print('The data ', cnt, ' is : ', item)
-    cnt += 1
+if __name__ == '__main__':
+    app.run(debug=True,port = 5000)

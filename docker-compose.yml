@@ -65,8 +65,11 @@ services:
       - mosquitto-log:/mosquitto/log
     restart: unless-stopped
   machine-learning:
+    container_name: 'air_prediction'
     build: 
       context: ./air_prediction
+    ports:
+      - '5000:5000'
     depends_on:
       - nodered
 
