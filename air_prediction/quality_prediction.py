@@ -2,7 +2,13 @@ import pickle
 import numpy as np
 
 from datetime import datetime, timedelta
-from flask import Flask, request
+from flask import Flask, request,send_file
+from PDF import PDF
+import time
+import pandas as pd
+import matplotlib.pyplot as plt
+import dataframe_image as dfi
+import seaborn as sns
 
 app = Flask(__name__)
 
@@ -77,6 +83,52 @@ def predict():
         }  # Return the prediction result as a response
     else:
         return 'No data received'
+@app.route('/report',methods  =['GET'])
+def generate_report():
+# Open the data
+    df = pd.read_csv('./final_sensor.csv')
+    df['Time'] = pd.to_datetime(df['Time'])
+
+    # Convert the datetime to a more human-readable format
+    dateTime = df['Time'].dt.strftime('%Y-%m-%d %H:%M:%S')
+    df['Date'] = dateTime.str.split(' ').str[0]
+    df['Time'] = dateTime.str.split(' ').str[1]
+
+    df['DateTime'] = pd.to_datetime(df['Time'])
+
+    df.set_index('DateTime',inplace=True)
+
+    df.drop(columns=['Time','Date'],inplace=True)
+    dfi.export(df, 'resources/annual_sales.png',max_rows=10)
+    sns.set_style("whitegrid")
+
+# Plotting
+    fig, axs = plt.subplots(1, 1, figsize=(20, 10))
+
+    # Temperature
+    sns.lineplot(data=df, x='DateTime', y='Temperature', hue='Device Name', ax=axs, ci=None)
+    axs.set_title('Temperature VS Time')
+    axs.set_ylabel('Temperature (°C)')
+    plt.tight_layout()
+    plt.savefig('resources/temperature.png', dpi=300, bbox_inches='tight', pad_inches=0)
+    
+    pdf = PDF() # A4 (210 by 297 mm)
+    pdf.add_page()
+    pdf.image("./resources/letter_head.png", 0, 0, 210)
+    pdf.output("resources/annual_performance_report.pdf", 'F')
+    return send_file("resources\\annual_performance_report.pdf")
+
+ 
+
+
+    
+  
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
