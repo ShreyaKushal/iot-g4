@@ -4,11 +4,10 @@ import numpy as np
 from datetime import datetime, timedelta
 from flask import Flask, request,send_file
 from PDF import PDF
-import time
-import pandas as pd
-import matplotlib.pyplot as plt
-import dataframe_image as dfi
-import seaborn as sns
+
+
+
+
 
 app = Flask(__name__)
 
@@ -85,38 +84,54 @@ def predict():
         return 'No data received'
 @app.route('/report',methods  =['GET'])
 def generate_report():
+    type_of_report = request.args.get('type')
+
+    # Have to generate the title better 
+
 # Open the data
-    df = pd.read_csv('./final_sensor.csv')
-    df['Time'] = pd.to_datetime(df['Time'])
+    
+    
+    
+  
 
-    # Convert the datetime to a more human-readable format
-    dateTime = df['Time'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    df['Date'] = dateTime.str.split(' ').str[0]
-    df['Time'] = dateTime.str.split(' ').str[1]
-
-    df['DateTime'] = pd.to_datetime(df['Time'])
-
-    df.set_index('DateTime',inplace=True)
-
-    df.drop(columns=['Time','Date'],inplace=True)
-    dfi.export(df, 'resources/annual_sales.png',max_rows=10)
-    sns.set_style("whitegrid")
+# Set the style of seaborn for better visualization
+    
 
 # Plotting
-    fig, axs = plt.subplots(1, 1, figsize=(20, 10))
+    
 
-    # Temperature
-    sns.lineplot(data=df, x='DateTime', y='Temperature', hue='Device Name', ax=axs, ci=None)
-    axs.set_title('Temperature VS Time')
-    axs.set_ylabel('Temperature (°C)')
-    plt.tight_layout()
-    plt.savefig('resources/temperature.png', dpi=300, bbox_inches='tight', pad_inches=0)
     
     pdf = PDF() # A4 (210 by 297 mm)
+    pdf.setup()
     pdf.add_page()
-    pdf.image("./resources/letter_head.png", 0, 0, 210)
-    pdf.output("resources/annual_performance_report.pdf", 'F')
-    return send_file("resources\\annual_performance_report.pdf")
+    pdf.create_letterhead()
+    pdf.create_title(type_of_report)
+    pdf.temperature_trend_analysis()
+    pdf.ln(10)
+    pdf.write_heading_pdf(f"Graph Of Temperature vs Time For the Past {type_of_report.capitalize()} Days ")
+    pdf.ln(5)
+    pdf.write_to_pdf("Through this graph, we can see if there are timings that are above the red threshold of (27.C) for temperature readings ")
+    # Temperature Graph
+    pdf.image("./resources/temperature.png",0,100,210)
+    # Add another Page
+    pdf.add_page()
+    pdf.ln(10)
+    pdf.write_heading_pdf(f"Graph Of Carbon Dioxide vs Time For the Past {type_of_report.capitalize()} Days ")
+    pdf.ln(5)
+    pdf.write_to_pdf("Through this graph, we can see if there are timings that are above the red threshold of 800ppm for CO2 readings ")
+
+    pdf.co2_trend_analysis()
+    pdf.image("./resources/CO2.png",0,30,210)
+    pdf.humidity_trend_analysis()
+    pdf.ln(120)
+    pdf.write_heading_pdf(f"Graph Of Humidity vs Time For the Past {type_of_report.capitalize()} Days ")
+    pdf.ln(5)
+    pdf.write_to_pdf("Through this graph, we can see if there are timings that are above the red threshold of 65(%) for Humidity readings ")
+
+    pdf.image('./resources/Humidity.png',0,158,210)
+    pdf.output("resources/Trend_Problem_Analysis_report.pdf", 'F')
+    return send_file('resources/Trend_Problem_Analysis_report.pdf')
+    
 
  
 
