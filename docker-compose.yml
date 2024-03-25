@@ -69,10 +69,16 @@ services:
     build: 
       context: ./air_prediction
     ports:
-      - '5000:5000'
+      - '5001:5001'
     depends_on:
       - nodered
 
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:stable
+    ports:
+      - "8123:8123"
+    restart: always
 
 volumes:
   influxdb-data:
