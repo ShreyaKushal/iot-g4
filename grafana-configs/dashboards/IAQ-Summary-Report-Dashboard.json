@@ -26,11 +26,23 @@
       "includeVars": true,
       "keepTime": true,
       "tags": [],
-      "targetBlank": false,
+      "targetBlank": true,
       "title": "Generate IAQ Report",
       "tooltip": "Generate Report",
       "type": "link",
-      "url": "http://localhost:8686/api/v5/report/bf902a40-1257-452b-99ae-3304c18e5824?apitoken=glsa_zNITkcfNkt9izxgLzvSSXmNWCQskkW25_e37fded7"
+      "url": "http://localhost:8686/api/v5/report/bf902a40-1257-452b-99ae-3304c18e5824?apitoken=glsa_QMv2lxVe9afG3ME5BoG0IFX8yKgVtdOP_06324b5c&template=template"
+    },
+    {
+      "asDropdown": false,
+      "icon": "external link",
+      "includeVars": true,
+      "keepTime": true,
+      "tags": [],
+      "targetBlank": true,
+      "title": "Generate IAQ Report with AI",
+      "tooltip": "Generate Report with AI summary",
+      "type": "link",
+      "url": "http://localhost:5002/get-dashboard-summary"
     }
   ],
   "liveNow": false,
@@ -114,9 +126,7 @@
           "placement": "bottom",
           "showLegend": false
         },
-        "timezone": [
-          "Asia/Singapore"
-        ],
+        "timezone": ["Asia/Singapore"],
         "tooltip": {
           "mode": "single",
           "sort": "none"
@@ -233,9 +243,7 @@
         "footer": {
           "countRows": false,
           "fields": [],
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "frameIndex": 0,
@@ -358,9 +366,7 @@
           "placement": "bottom",
           "showLegend": false
         },
-        "timezone": [
-          "Asia/Singapore"
-        ],
+        "timezone": ["Asia/Singapore"],
         "tooltip": {
           "mode": "single",
           "sort": "none"
@@ -477,9 +483,7 @@
         "footer": {
           "countRows": false,
           "fields": [],
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "frameIndex": 0,
@@ -604,9 +608,7 @@
           "placement": "bottom",
           "showLegend": false
         },
-        "timezone": [
-          "Asia/Singapore"
-        ],
+        "timezone": ["Asia/Singapore"],
         "tooltip": {
           "mode": "single",
           "sort": "none"
@@ -723,9 +725,7 @@
         "footer": {
           "countRows": false,
           "fields": [],
-          "reducer": [
-            "sum"
-          ],
+          "reducer": ["sum"],
           "show": false
         },
         "frameIndex": 0,

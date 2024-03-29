@@ -1,0 +1,26 @@
+% Use square brackets as golang text templating delimiters
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\graphicspath{ {images/} }
+
+\begin{document}
+
+% Dynamic title, variable values, and overall description processing
+\title{[[.Title]] [[if .VariableValues]] \ \large{[[.VariableValues]]} [[end]] [[if .Description]] \ \small{[[.Description]]} [[end]]}
+\date{[[.FromFormatted]] to [[.ToFormatted]]}
+\maketitle
+
+\section*{Summary}
+Summary of Dashboard.
+
+% Assuming the range directive is used for looping over panels
+[[range .Panels]] % Start of loop
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{image[[.Id]]} % Assume .Id is correctly replaced with each panel's ID
+  \caption{[[.Title]]} % And .Title with the panel's title
+\end{figure}
+[[end]] % End of loop
+
+\end{document}
