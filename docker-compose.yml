@@ -47,12 +47,27 @@ services:
   grafana-image-renderer:
     image: grafana/grafana-image-renderer:latest
     ports:
-      - "8081:8081"
+      - '8081:8081'
+
   grafana-reporter:
     image: izakmarais/grafana-reporter:${gr_version:-latest}
-    command: "-ip grafana:3000"
+    command: '-ip grafana:3000 -templates /var/lib/grafana-reporter/templates/'
     ports:
-      - "8686:8686"
+      - '8686:8686'
+    volumes:
+      - 'templates_volume:/var/lib/grafana-reporter/templates/'
+
+  ai-service:
+    build:
+      context: ./ai-service
+    ports:
+      - '5002:5002'
+    depends_on:
+      - grafana
+      - grafana-reporter
+    volumes:
+      - 'templates_volume:/var/lib/ai-service/templates/'
+    restart: unless-stopped
 
   mosquitto:
     image: eclipse-mosquitto
@@ -64,9 +79,10 @@ services:
       - mosquitto-data:/mosquitto/data
       - mosquitto-log:/mosquitto/log
     restart: unless-stopped
+
   machine-learning:
     container_name: 'air_prediction'
-    build: 
+    build:
       context: ./air_prediction
     ports:
       - '5001:5001'
@@ -77,7 +93,7 @@ services:
     container_name: homeassistant
     image: homeassistant/home-assistant:stable
     ports:
-      - "8123:8123"
+      - '8123:8123'
     restart: always
 
 volumes:
@@ -86,3 +102,4 @@ volumes:
   grafana-data:
   mosquitto-data:
   mosquitto-log:
+  templates_volume:

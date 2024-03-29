@@ -151,6 +151,20 @@ docker compose up
     <li>To test, run <i>tuya.py</i></li>
 </ul>
 
+7. Set up ai-service
+<ul>
+    <li>Copy template file to templates_volume after container start:</li>
+    <ul>
+        <li>Run <i>docker container ls</i></li>
+        <li>Look for iot-g3-ai-service and copy the <i>CONTAINER ID</i></li>
+        <li>In the iot-g3 directory,
+            Run <i>docker cp template.tex 
+                <b>{CONTAINER_ID}:/var/lib/ai-service/templates/template.tex</b>
+            </i>
+        </li>
+    </ul>
+</ul>
+
 # Login Credentials
 
 For Grafana and InfluxDB 2.0,
