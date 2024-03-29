@@ -139,7 +139,7 @@ def generate_report():
     
     
     pdf = PDF() # A4 (210 by 297 mm)
-    pdf.setup(data)
+    return pdf.setup(data)
     pdf.add_page()
     pdf.create_letterhead()
     pdf.create_title(type_of_report)
@@ -240,7 +240,7 @@ def generate_report():
     
     pdf.output("resources/Trend_Problem_Analysis_report.pdf", 'F')
     
-    return send_file('resources/Trend_Problem_Analysis_report.pdf',as_attachment=True)
+    return send_file('resources/Trend_Problem_Analysis_report.pdf',as_attachment=True,mimetype='application/pdf')
 
     
 

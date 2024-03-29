@@ -37,9 +37,10 @@ class PDF(FPDF):
                 'carbon dioxide': carbon_dioxide,
                 'humidity': humidity
             }
+            rows.append(row)
     
     # Append the row dictionary to the list of rows
-        rows.append(row)
+       
 
 # Create a DataFrame from the list of rows
         self.df = pd.DataFrame(rows)
@@ -63,7 +64,7 @@ class PDF(FPDF):
         self.df.set_index('DateTime',inplace=True)
 
         self.df.drop(columns=['Time','Date'],inplace=True)
-        print(self.df)
+        return self.df.to_csv()
         
 
 
