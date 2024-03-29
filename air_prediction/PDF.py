@@ -21,7 +21,7 @@ class PDF(FPDF):
 
 # Iterate over each JSON object
         for obj in data:
-            print(obj)
+         
             # Extract fields from the JSON object
             time = obj.get('Time')
             device_name = obj.get('Device Name')

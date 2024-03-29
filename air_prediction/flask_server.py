@@ -240,7 +240,7 @@ def generate_report():
     
     pdf.output("resources/Trend_Problem_Analysis_report.pdf", 'F')
     
-    return send_file('resources/Trend_Problem_Analysis_report.pdf')
+    return send_file('resources/Trend_Problem_Analysis_report.pdf',as_attachment=True)
 
     
 
