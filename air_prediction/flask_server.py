@@ -5,6 +5,9 @@ from datetime import datetime, timedelta
 from flask import Flask, request,send_file
 from PDF import PDF
 import os
+import time
+
+import paho.mqtt.client as mqtt
 
 
 
@@ -37,7 +40,37 @@ with open('arima_humidity.pickle','rb') as file:
     humidity_model = pickle.load(file)
 with open('arima_temperature.pickle','rb') as file:
     temperature_model = pickle.load(file)
-print("hello")
+
+mqttc = None
+broker_address = "test.mosquitto.org"
+port = 1883
+topic_on = "iot/sensor1/on"
+topic_off = "iot/sensor1/off"
+
+def turnOn() -> None:
+    global mqttc
+
+    mqttc = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1)
+    mqttc.connect(broker_address, port)
+    mqttc.loop_start()
+    payload="on"
+    print(f"Publish | topic: {topic_on} | payload: {payload}")
+    mqttc.publish(topic=topic_on, payload=payload, qos=2)
+    time.sleep(5)
+    mqttc.loop_stop()
+    print("turn on")
+def turnOff() -> None:
+    global mqttc
+    print("hello")
+
+    mqttc = mqtt.Client(callback_api_version=mqtt.CallbackAPIVersion.VERSION1)
+    mqttc.connect(broker_address, port)
+    mqttc.loop_start()
+    payload="off"
+    print(f"Publish | topic: {topic_off} | payload: {payload}")
+    mqttc.publish(topic=topic_off, payload=payload, qos=2)
+    time.sleep(5)
+    mqttc.loop_stop()
 
 @app.route('/predict', methods=['GET'])
 def predict():
@@ -51,12 +84,6 @@ def predict():
         count += 1
         next_timestamp = (current_time + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
 
-    # Receive the data from Node-RED
-    data = request.get_data()
-
-    if data:
-        # Process the received data using the model
-        print(count)
         pred_co2 = co2_model.forecast(steps=count)[0]
 
         co2_result = round(co2_scaler.inverse_transform(np.array(pred_co2).reshape(-1, 1))[0][0], 1)
@@ -82,20 +109,27 @@ def predict():
             status ="Moderate Low"
         else:
             status = "Bad"
+        # Next Predicted hour will be bad
+        if metircs <2:
+            turnOff()
+        # Next predicted hour will be good
+        else:
+
+            turnOn()
 
         # print('Prediction result:', co2_result)
     
-        # print(temperature_result)
-        return {
-            'Next Predicted Time': next_timestamp,
-            'CO2 ' : co2_result,
-            'Humidity' : humidity_result,
-            'Temperature' :  temperature_result,
-            'Status' : status
-        }  # Return the prediction result as a response
-    else:
-        return 'No data received'
-@app.route('/report',methods  =['GET'])
+    # print(temperature_result)
+    return {
+        'Next Predicted Time': next_timestamp,
+        'CO2 ' : co2_result,
+        'Humidity' : humidity_result,
+        'Temperature' :  temperature_result,
+        'Status' : status
+    }  # Return the prediction result as a response
+        
+    
+@app.route('/report',methods  =['POST'])
 def generate_report():
     type_of_report = request.args.get('type')
 
