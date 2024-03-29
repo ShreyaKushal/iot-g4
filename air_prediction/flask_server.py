@@ -84,40 +84,40 @@ def predict():
         count += 1
         next_timestamp = (current_time + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
 
-        pred_co2 = co2_model.forecast(steps=count)[0]
+    pred_co2 = co2_model.forecast(steps=count)[0]
 
-        co2_result = round(co2_scaler.inverse_transform(np.array(pred_co2).reshape(-1, 1))[0][0], 1)
-        
-        if co2_result >co2_threshold:
-            metircs +=1
-        
-        pred_humidity = humidity_model.forecast(steps=count)[0]
-       
-        humidity_result  = round(humidity_scaler.inverse_transform(np.array(pred_humidity).reshape(-1, 1))[0][0], 1)
-        if humidity_result > humidity_threshold:
-            metircs +=1
-        
-        pred_temperature = temperature_model.forecast(steps=count)[0]
-        temperature_result = round(temperature_scaler.inverse_transform(np.array(pred_temperature).reshape(-1, 1))[0][0], 1)
-        if temperature_result > temperture_threshold:
-            metircs +=1
-        if metircs == 0:
-            status = "Good"
-        elif metircs == 1:
-            status = "Moderate High"
-        elif metircs == 2:
-            status ="Moderate Low"
-        else:
-            status = "Bad"
-        # Next Predicted hour will be bad
-        if metircs <2:
-            turnOff()
-        # Next predicted hour will be good
-        else:
+    co2_result = round(co2_scaler.inverse_transform(np.array(pred_co2).reshape(-1, 1))[0][0], 1)
+    
+    if co2_result >co2_threshold:
+        metircs +=1
+    
+    pred_humidity = humidity_model.forecast(steps=count)[0]
+    
+    humidity_result  = round(humidity_scaler.inverse_transform(np.array(pred_humidity).reshape(-1, 1))[0][0], 1)
+    if humidity_result > humidity_threshold:
+        metircs +=1
+    
+    pred_temperature = temperature_model.forecast(steps=count)[0]
+    temperature_result = round(temperature_scaler.inverse_transform(np.array(pred_temperature).reshape(-1, 1))[0][0], 1)
+    if temperature_result > temperture_threshold:
+        metircs +=1
+    if metircs == 0:
+        status = "Good"
+    elif metircs == 1:
+        status = "Moderate High"
+    elif metircs == 2:
+        status ="Moderate Low"
+    else:
+        status = "Bad"
+    # Next Predicted hour will be bad
+    if metircs <2:
+        turnOff()
+    # Next predicted hour will be good
+    else:
 
-            turnOn()
+        turnOn()
 
-        # print('Prediction result:', co2_result)
+    # print('Prediction result:', co2_result)
     
     # print(temperature_result)
     return {
@@ -132,12 +132,14 @@ def predict():
 @app.route('/report',methods  =['POST'])
 def generate_report():
     type_of_report = request.args.get('type')
+    data = request.json
+
 
 
     
     
     pdf = PDF() # A4 (210 by 297 mm)
-    pdf.setup()
+    pdf.setup(data)
     pdf.add_page()
     pdf.create_letterhead()
     pdf.create_title(type_of_report)

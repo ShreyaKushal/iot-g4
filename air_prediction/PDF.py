@@ -16,8 +16,36 @@ class PDF(FPDF):
     HEIGHT = 297
     CHATGPT_API_KEY  = ""
 
-    def setup(self):
-        self.df = pd.read_csv('./final_sensor.csv')
+    def setup(self,data):
+        rows = []
+
+# Iterate over each JSON object
+        for obj in data:
+            print(obj)
+            # Extract fields from the JSON object
+            time = obj.get('Time')
+            device_name = obj.get('Device Name')
+            temperature = obj.get('temperature')
+            carbon_dioxide = obj.get('carbon dioxide')
+            humidity = obj.get('humidity')
+    
+    # Create a dictionary representing a row in the desired format
+            row = {
+                'Time': time,
+                'Device Name': device_name,
+                'temperature': temperature,
+                'carbon dioxide': carbon_dioxide,
+                'humidity': humidity
+            }
+    
+    # Append the row dictionary to the list of rows
+        rows.append(row)
+
+# Create a DataFrame from the list of rows
+        self.df = pd.DataFrame(rows)
+        
+
+        
         load_dotenv()
 
 # Access environment variables
@@ -35,6 +63,7 @@ class PDF(FPDF):
         self.df.set_index('DateTime',inplace=True)
 
         self.df.drop(columns=['Time','Date'],inplace=True)
+        print(self.df)
         
 
 
