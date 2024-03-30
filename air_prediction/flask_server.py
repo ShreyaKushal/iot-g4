@@ -9,7 +9,7 @@ import time
 
 import paho.mqtt.client as mqtt
 
-
+import requests
 
 
 
@@ -116,6 +116,31 @@ def predict():
     else:
 
         turnOn()
+    
+    # Prepare data to send to Telegram bot
+    data = {
+        "CO2": round(co2_result, 1),
+        "Humidity": round(humidity_result, 1),
+        "Temperature": round(temperature_result, 1),
+        "Status": status
+    }
+
+    # Telegram bot token and desired chat ID
+    telegram_bot_token = "7009183620:AAFotZ_RmuOG7OU5I3fbDXerOM8vSFO0t5s"
+    chat_id = "-4193361266"
+
+    # Send data to Telegram bot
+    url = f"https://api.telegram.org/bot{telegram_bot_token}/sendMessage"
+    message = ""
+    for key, value in data.items():
+        message += f"{key}: {value}\n" 
+    response = requests.post(url, json={"chat_id": chat_id, "text": message})
+
+    # Check response status and handle errors
+    if response.status_code == 200:
+        print("Successfully sent data to Telegram bot!")
+    else:
+        print(f"Error sending data: {response.text}")
 
     # print('Prediction result:', co2_result)
     
