@@ -136,10 +136,12 @@ def generate_report():
 
 
 
+
     
     
     pdf = PDF() # A4 (210 by 297 mm)
-    return pdf.setup(data)
+    pdf.setup(data)
+    
     pdf.add_page()
     pdf.create_letterhead()
     pdf.create_title(type_of_report)
@@ -225,18 +227,6 @@ def generate_report():
             index =0
     pdf.ln(180)
     pdf.write_to_pdf(pdf.analyse_list_images())
-    
-
-
-    
-    
-    
-        
-
-    
-
-
-
     
     pdf.output("resources/Trend_Problem_Analysis_report.pdf", 'F')
     

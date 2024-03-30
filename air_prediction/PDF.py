@@ -64,7 +64,7 @@ class PDF(FPDF):
         self.df.set_index('DateTime',inplace=True)
 
         self.df.drop(columns=['Time','Date'],inplace=True)
-        return self.df.to_csv()
+       
         
 
 
@@ -77,8 +77,8 @@ class PDF(FPDF):
         self.image("./resources/letter_head.png", 0, 0, 210)
     def create_title(self,type):
         day_dict = {'one':1,
-                    'two' :2,
-                    'three' :3}
+                    'three' :3,
+                    'seven' :7}
         
         self.ln(12)
         self.set_font('Helvetica', 'b', 15)  
