@@ -1,5 +1,6 @@
 import pickle
 import numpy as np
+from apscheduler.schedulers.background import BackgroundScheduler 
 
 from datetime import datetime, timedelta
 from flask import Flask, request,send_file
@@ -11,10 +12,14 @@ import paho.mqtt.client as mqtt
 
 import requests
 
+import sched
 
 
 
 app = Flask(__name__)
+
+scheduler = BackgroundScheduler()
+
 
 count = 1
 next_timestamp = (datetime.now() + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0).strftime('%Y-%m-%d %H:%M:%S')
@@ -71,6 +76,8 @@ def turnOff() -> None:
     mqttc.publish(topic=topic_off, payload=payload, qos=2)
     time.sleep(5)
     mqttc.loop_stop()
+
+
 
 @app.route('/predict', methods=['GET'])
 def predict():
@@ -152,8 +159,8 @@ def predict():
         'Temperature' :  temperature_result,
         'Status' : status
     }  # Return the prediction result as a response
-        
-    
+   
+   
 @app.route('/report',methods  =['POST'])
 def generate_report():
     type_of_report = request.args.get('type')
@@ -272,4 +279,8 @@ def generate_report():
 
 
 if __name__ == '__main__':
+    #schedule to call predict API every hour 
+    scheduler.add_job(predict, 'interval', hours=1)
+    scheduler.start()
     app.run(debug=True, port=5001, host='0.0.0.0')
+   
