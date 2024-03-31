@@ -282,5 +282,5 @@ if __name__ == '__main__':
     #schedule to call predict API every hour 
     scheduler.add_job(predict, 'interval', hours=1)
     scheduler.start()
-    app.run(debug=True, port=5001, host='0.0.0.0')
+    app.run(debug=False, port=5001, host='0.0.0.0')
    
