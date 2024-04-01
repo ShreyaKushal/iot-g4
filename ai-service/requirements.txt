@@ -1,0 +1,6 @@
+Flask==3.0.2
+requests==2.25.1
+quart==0.15.1
+httpx==0.23.0
+python-dotenv==0.20.0
+openai
