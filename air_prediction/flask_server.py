@@ -121,10 +121,14 @@ def predict():
     # Next Predicted hour will be bad
     if metircs <2:
         turnOff()
+        message_sensor = f"There is predicted good air quality at {next_timestamp}, hence we will schedule the air humidifier to be turned off at {next_timestamp}"
+
     # Next predicted hour will be good
     else:
 
         turnOn()
+        message_sensor = f"There is predicted bad air quality at {next_timestamp}, hence we will schedule the air humidifier to be turned on at {next_timestamp}"
+
     
     # Prepare data to send to Telegram bot
     data = {
@@ -140,9 +144,10 @@ def predict():
 
     # Send data to Telegram bot
     url = f"https://api.telegram.org/bot{telegram_bot_token}/sendMessage"
-    message = ""
+    message = f"Our Predicted Values of Air Quality at {next_timestamp}\n"
     for key, value in data.items():
         message += f"{key}: {value}\n" 
+    message += message_sensor
     response = requests.post(url, json={"chat_id": chat_id, "text": message})
 
     # Check response status and handle errors
@@ -269,9 +274,13 @@ def generate_report():
 
 
 
-@app.route("/switch",method = ['POST'])
+@app.route("/switch",methods = ['POST'])
 def switch_on():
+    
     data = request.json
+    print(data)
+    if data is None or 'carbon dioxide' not in data or 'humidity' not in data or 'temperature' not in data:
+        return {"error": "Invalid or missing data in request."}, 400
     metrics =0 
     co2_level = data['carbon dioxide']
     humidity_level = data['humidity']
@@ -284,8 +293,10 @@ def switch_on():
         metrics +=1
     if metrics >=2:
         turnOn()
+        return {'Status' : "Turning On Device"}
     else:
         turnOff()
+        return {'Status' : "Turning Off Device"}
 
 
 
